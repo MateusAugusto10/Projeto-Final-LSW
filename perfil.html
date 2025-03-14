@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles/perfil.css">
+    <link rel="stylesheet" href="styles/auth.css">
+    <title>Aplicativo de Finanças</title>
+    
+</head>
+<body>
+ 
+ <!-- Container de Autenticação -->
+ <div class="auth-container" id="authContainer">
+  <div class="login-form" id="loginForm">
+      <h2>Login</h2>
+      <input type="text" id="loginUsername" placeholder="Nome de usuário">
+      <input type="password" id="loginPassword" placeholder="Senha">
+      <button onclick="login()">Entrar</button>
+      <div class="auth-toggle" onclick="toggleAuthForms()">Não tem uma conta? Registre-se</div>
+  </div>
+  <div class="register-form" id="registerForm" style="display: none;">
+      <h2>Registrar</h2>
+      <input type="text" id="registerName" placeholder="Nome completo">
+      <input type="email" id="registerEmail" placeholder="E-mail">
+      <input type="text" id="registerUsername" placeholder="Nome de usuário">
+      <input type="password" id="registerPassword" placeholder="Senha">
+      <button onclick="register()">Registrar</button>
+      <div class="auth-toggle" onclick="toggleAuthForms()">Já tem uma conta? Faça login</div>
+  </div>
+</div>
+
+
+
+    <!-- Conteúdo do Aplicativo -->
+    <div id="appContent" style="display: none;">
+        <div class="header">
+            <h1 id="welcome">Bem-vindo!</h1>
+        </div>
+        
+        <div class="container">
+            <div class="caixa">
+                <div class="left-section">
+                    <div class="profile-info">
+                        <h2>Informações do Perfil</h2>
+                        <p><strong>Nome:</strong> <span id="name"></span></p>
+                        <p><strong>E-mail:</strong> <span id="email"></span></p>
+                        <p><strong>Usuário:</strong> <span id="username"></span></p>
+                        <button class="btn btn-red" onclick="logout()">Sair</button>
+                    </div>
+                
+                    <div class="card">
+                        <h2>Renda Mensal</h2>
+                        <input type="number" id="income" placeholder="Digite sua renda mensal" onchange="updateIncome()">
+                        <div class="total-expenses">
+                            <span>Total de Despesas: R$ <span id="totalAmount">0</span></span>
+                            <div class="percentage" id="percentage"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="right-section">
+                    <div class="chart-container">
+                        <div class="chart-title">Distribuição de Despesas</div>
+                        <canvas id="expenseChart"></canvas>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h2>Adicionar Despesa</h2>
+                <input type="text" id="expenseName" placeholder="Nome da despesa">
+                <input type="number" id="expenseAmount" placeholder="Valor">
+                <select id="expenseCategory">
+                    <option value="">Selecione uma categoria</option>
+                    <option value="Alimentação">Alimentação</option>
+                    <option value="Moradia">Moradia</option>
+                    <option value="Transporte">Transporte</option>
+                    <option value="Lazer">Lazer</option>
+                    <option value="Outros">Outros</option>
+                </select>
+                <button onclick="addExpense()">Adicionar Despesa</button>
+            </div>
+            
+            <div class="card">
+                <h2>Despesas</h2>
+                <div id="expensesList"></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="javascript/auth.js"></script>
+    <script src="javascript/user.js"></script>
+    <script src="javascript/expenses.js"></script>
+    <script src="javascript/chart.js"></script>
+    <script src="main.js"></script>
+    
+</body>
+</html>
